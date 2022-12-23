@@ -10,29 +10,29 @@ import * as S from './Styled'
 
 const RightWrapper = styled.div`
   position: absolute;
-  min-height: 100%;
+  min-height: 0%;
   right: 0;
   bottom: 0px;
   ${({ theme }) => theme.mediaQueries.sm} {
-    bottom: 8.2px;
+    bottom: 0px;
   }
   ${({ theme }) => theme.mediaQueries.md} {
-    bottom: 9px;
+    bottom: 0px;
   }
   ${({ theme }) => theme.mediaQueries.lg} {
-    bottom: -2px;
+    bottom: -0px;
   }
 `
 const Header = styled(S.StyledHeading)`
-  font-size: 20px;
-  min-height: 44px;
+  font-size: 0px;
+  min-height: 0px;
   ${({ theme }) => theme.mediaQueries.sm} {
-    font-size: 40px;
-    min-height: auto;
+    font-size: 0px;
+    min-height: 0px;
   }
 `
 
-const HEADING_ONE_LINE_HEIGHT = 27
+const HEADING_ONE_LINE_HEIGHT = 0
 
 const PerpetualBanner = () => {
   const {
@@ -42,10 +42,7 @@ const PerpetualBanner = () => {
   const { isDesktop, isMobile } = useMatchBreakpoints()
   const { isDark } = useTheme()
 
-  const perpetualUrl = useMemo(
-    () => `https://perp.pancakeswap.finance/${perpLangMap(code)}/futures/BTCUSDT?theme=${perpTheme(isDark)}`,
-    [code, isDark],
-  )
+  const perpetualUrl = useMemo
   const headerRef = useRef<HTMLDivElement>(null)
 
   useIsomorphicEffect(() => {
@@ -54,8 +51,8 @@ const PerpetualBanner = () => {
     target.style.lineHeight = ''
     if (!target || !isMobile) return
     if (target.offsetHeight > HEADING_ONE_LINE_HEIGHT) {
-      target.style.fontSize = '18px'
-      target.style.lineHeight = `${HEADING_ONE_LINE_HEIGHT}px`
+      target.style.fontSize = '0px'
+      target.style.lineHeight = ${HEADING_ONE_LINE_HEIGHT}px
     }
   }, [isMobile, code])
 
@@ -63,23 +60,12 @@ const PerpetualBanner = () => {
     <S.Wrapper>
       <S.Inner>
         <S.LeftWrapper>
-          <S.StyledSubheading ref={headerRef}>{t('Perpetual Futures')}</S.StyledSubheading>
-          <Header width={['160px', '160px', 'auto']}>{t('Up to 100× Leverage')}</Header>
+          <S.StyledSubheading ref={headerRef}>{t('')}</S.StyledSubheading>
+          <Header width={['0px', '0px', 'auto']}>{t('')}</Header>
           <Link href={perpetualUrl} external>
-            <Button>
-              <Text color="invertedContrast" bold fontSize="16px" mr="4px">
-                {t('Trade Now')}
-              </Text>
-              <ArrowForwardIcon color="invertedContrast" />
-            </Button>
           </Link>
         </S.LeftWrapper>
         <RightWrapper>
-          {isDesktop ? (
-            <Image src={perpetualImage} alt="PerpetualBanner" width={392} height={232} placeholder="blur" />
-          ) : (
-            <Image src={perpetualMobileImage} alt="PerpetualBanner" width={208} height={208} placeholder="blur" />
-          )}
         </RightWrapper>
       </S.Inner>
     </S.Wrapper>
